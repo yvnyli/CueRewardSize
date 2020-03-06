@@ -15,7 +15,7 @@ cue = 3;
 % DEFINE EDITABLE VARIABLES
 editable('wait_for_fix');
 editable('initial_fix');
-editable('sample_fix');
+editable('cue_fix');
 editable('delay');
 editable('half_iti');
 editable('fix_radius');
@@ -86,7 +86,7 @@ else
   goodmonkey(reward_large, 'NumReward', 1);
 end
 idle(half_iti);
-[TimeTrialGateOff] = toggleobject(trialGate,'eventmaker',100,'status','off');
+[TimeTrialGateOff] = toggleobject(trialGate,'eventmarker',100,'status','off');
 idle(half_iti);
 trialerror(0);
 return
