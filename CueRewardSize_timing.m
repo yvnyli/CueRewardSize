@@ -21,12 +21,13 @@ editable('half_iti');
 editable('fix_radius');
 editable('reward_small');
 editable('reward_large');
+editable('reward_average');
 
 % define time intervals (in ms):
 wait_for_fix = 1000;
 initial_fix = 500;
 cue_fix = 500;
-delay = 500;
+delay = 1000;
 half_iti = 1000;
 % max_reaction_time = 500;
 % saccade_time = 80;
@@ -37,7 +38,8 @@ fix_radius = 1;
 
 % reward
 reward_small = 20;
-reward_large = 150;
+reward_large = 200;
+reward_average = mean(reward_small,reward_large);
 
 
 % TASK:
@@ -82,6 +84,8 @@ idle(delay);
 % reward
 if strcmp(TrialRecord.CurrentConditionInfo.RewardSize,'small')
   goodmonkey(reward_small, 'NumReward', 1);
+elseif strcmp(TrialRecord.CurrentConditionInfo.RewardSize,'average')
+  goodmonkey(reward_average, 'NumReward', 1);
 else
   goodmonkey(reward_large, 'NumReward', 1);
 end
