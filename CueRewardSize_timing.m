@@ -16,17 +16,19 @@ cue = 3;
 editable('wait_for_fix');
 editable('initial_fix');
 editable('cue_fix');
+editable('delay_fix');
 editable('delay');
 editable('half_iti');
 editable('fix_radius');
 editable('reward_small');
 editable('reward_large');
-editable('reward_average');
+% editable('reward_average');
 
 % define time intervals (in ms):
 wait_for_fix = 1000;
 initial_fix = 500;
 cue_fix = 500;
+delay_fix = 500;
 delay = 1000;
 half_iti = 1000;
 % max_reaction_time = 500;
@@ -76,9 +78,20 @@ if ~ontarget
  return
 end
 
-% delay epoch
-% turn off FP and cue
-toggleobject([fixation_point cue],'eventmarker',34,'status','off');
+% delay epoch1
+% turn off cue
+toggleobject(cue,'eventmarker',35,'status','off');
+% continue to maintain FP fixation
+ontarget = eyejoytrack('holdfix', fixation_point, fix_radius, delay_fix);
+if ~ontarget
+  [TimeTrialGateOff] = toggleobject(trialGate,'eventmarker',32,'status','off');
+  toggleobject(fixation_point,'eventmarker',34,'status','off');
+  trialerror(3); % broke fixation
+ return
+end
+
+% turn off FP and wait
+toggleobject([fixation_point cue],'eventmarker',44,'status','off');
 idle(delay);
 
 % reward
