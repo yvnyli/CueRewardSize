@@ -36,7 +36,7 @@ half_iti = 1000;
 % hold_target_time = 300;
 
 % fixation window (in degrees):
-fix_radius = 1;
+fix_radius = 2;
 
 % reward
 reward_small = 20;
@@ -97,11 +97,15 @@ idle(delay);
 % reward
 if strcmp(TrialRecord.CurrentConditionInfo.RewardSize,'small')
   goodmonkey(reward_small, 'NumReward', 1);
+  eventmarker(91);
 elseif strcmp(TrialRecord.CurrentConditionInfo.RewardSize,'average')
   goodmonkey(reward_average, 'NumReward', 1);
+  eventmarker(92);
 else
   goodmonkey(reward_large, 'NumReward', 1);
+  eventmarker(93);
 end
+
 idle(half_iti);
 [TimeTrialGateOff] = toggleobject(trialGate,'eventmarker',100,'status','off');
 idle(half_iti);
