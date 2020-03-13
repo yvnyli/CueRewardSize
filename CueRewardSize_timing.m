@@ -22,7 +22,7 @@ editable('half_iti');
 editable('fix_radius');
 editable('reward_small');
 editable('reward_large');
-% editable('reward_average');
+editable('reward_average');
 
 % define time intervals (in ms):
 wait_for_fix = 1000;
@@ -41,7 +41,7 @@ fix_radius = 2;
 % reward
 reward_small = 20;
 reward_large = 200;
-reward_average = mean(reward_small,reward_large);
+reward_average = 110;
 
 
 % TASK:
