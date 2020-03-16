@@ -1,5 +1,6 @@
 function NextBlock = BlockChangeFunc(TrialRecord)
-	if TrialRecord.CurrentTrialWithinBlock == 20
+	totalCorrect = sum(TrialRecord.TrialErrors==0);
+	if totalCorrect>0 && TrialRecord.TrialErrors(end)==0 && mod(totalCorrect, 20)==0 
 		NextBlock = 1;
 	else
 		NextBlock = 0;
